@@ -7,135 +7,271 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      background-color: #121212;
-      color: #f2f2f2;
-      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212; /* Color de fondo oscuro */
+      color: #e0e0e0; /* Color de texto claro */
+      font-family: 'Arial', sans-serif;
       text-align: center;
-      margin: 0;
       padding: 20px;
     }
 
-    h1 {
-      color: #00ff88;
-      font-size: 2rem;
+    header {
+      background-color: #1f1f1f; /* Color de fondo del encabezado */
+      color: #ffffff; /* Color de texto del encabezado */
+      padding: 20px 0;
       margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.8s ease; /* Animación de entrada */
+    }
+
+    h1 {
+      font-size: 3rem; /* Tamaño de fuente */
+      margin-bottom: 10px;
+      animation: slideIn 0.8s ease; /* Animación de entrada */
     }
 
     h2 {
-      color: #00ccff;
+      color: #00bcd4; /* Color de los subtítulos */
       margin-top: 40px;
-      font-size: 1.4rem;
+      font-size: 2rem; /* Tamaño de subtítulos */
+      border-bottom: 2px solid #00bcd4; /* Borde inferior */
+      padding-bottom: 10px; /* Espaciado inferior */
+      animation: slideIn 0.8s ease; /* Animación de entrada */
     }
 
     p {
-      font-size: 1rem;
-      line-height: 1.5;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 10px 0;
+      animation: fadeIn 0.8s ease; /* Animación de entrada */
     }
 
-    .btn {
-      background-color: #00cc44;
-      border: none;
-      color: white;
-      padding: 14px 28px;
-      font-size: 1.1rem;
-      border-radius: 10px;
+    .btn, .whatsapp-btn {
+      background: rgba(0, 188, 212, 0.7); /* Fondo semitransparente */
+      border: none; /* Sin borde */
+      color: white; /* Color de texto de los botones */
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border-radius: 10px; /* Bordes redondeados */
       cursor: pointer;
       margin-top: 20px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+      backdrop-filter: blur(5px); /* Efecto de desenfoque */
+      animation: fadeIn 0.8s ease; /* Animación de entrada */
     }
 
-    .btn:hover {
-      background-color: #009933;
+    .btn:hover, .whatsapp-btn:hover {
+      background: rgba(0, 188, 212, 0.9); /* Color más oscuro al pasar el cursor */
+      transform: translateY(-2px); /* Efecto de elevación */
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Sombra más intensa al pasar el cursor */
     }
 
     .box {
-      background-color: #1e1e1e;
-      border-radius: 12px;
+      background-color: #1f1f1f; /* Color de fondo de las cajas */
+      border: 1px solid #333; /* Borde gris oscuro */
+      border-radius: 8px; /* Bordes redondeados */
       padding: 20px;
       margin: 20px auto;
       max-width: 800px;
       width: 100%;
-      box-shadow: 0 0 10px #000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      transition: box-shadow 0.3s, transform 0.3s; /* Transiciones suaves */
+      opacity: 0; /* Inicialmente oculto */
+      transform: translateY(20px); /* Desplazado hacia abajo */
+      animation: fadeInUp 0.8s forwards; /* Animación de entrada */
+    }
+
+    .box.visible {
+      opacity: 1; /* Visible */
+      transform: translateY(0); /* En su posición original */
     }
 
     .highlight {
-      color: #00ff88;
+      color: #00bcd4; /* Color destacado */
       font-weight: bold;
     }
 
     img {
       width: 100%;
       max-width: 600px;
-      border-radius: 10px;
+      border-radius: 5px; /* Bordes redondeados */
       margin: 15px auto;
-      box-shadow: 0 0 10px #00000055;
-      display: block;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s; /* Transición suave */
+    }
+
+    img:hover {
+      transform: scale(1.05); /* Efecto de aumento al pasar el cursor */
     }
 
     a {
-      color: #00ccff;
+      color: #00bcd4; /* Color de los enlaces */
       text-decoration: none;
+      transition: color 0.3s; /* Transición suave */
     }
 
     a:hover {
-      text-decoration: underline;
+      color: #0097a7; /* Color más oscuro al pasar el cursor */
+      text-decoration: underline; /* Subrayar al pasar el cursor */
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #aaa;
+      padding: 20px 0;
+      background-color: #1f1f1f; /* Color de fondo del pie de página */
+      border-top: 1px solid #333; /* Borde superior */
+    }
+
+    .scroll-indicator {
+      margin: 20px auto;
+      font-size: 2rem;
+      animation: bounce 1s infinite; /* Animación de rebote */
     }
 
     @media (max-width: 480px) {
       h1 {
-        font-size: 1.7rem;
+        font-size: 2.5rem;
       }
 
-      .btn {
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .btn, .whatsapp-btn {
         width: 100%;
         font-size: 1rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
       }
     }
   </style>
 </head>
 <body>
 
-  <h1>🔥 Encender el Servidor SurvivalCR</h1>
+  <header>
+    <h1>Encender el Servidor SurvivalCR</h1>
+  </header>
 
   <div class="box">
     <p>Presiona el botón para ir a Aternos y encender el servidor.</p>
 
-    <p>🌐 Enlace de encendido rápido:</p>
+    <p>Enlace de encendido rápido:</p>
     <p class="highlight">
-      <a href="https://add.aternos.org/SurvivalCR25" target="_blank">
-        https://add.aternos.org/SurvivalCR25
+      <a href="https://add.aternos.org/SurvivalCR10" target="_blank">
+        https://add.aternos.org/SurvivalCR10
       </a>
     </p>
 
     <a href="https://aternos.org/go/" target="_blank">
       <button class="btn">ENCENDER SERVIDOR</button>
     </a>
+
+    <p>Únete a nuestro grupo de WhatsApp:</p>
+    <a href="https://chat.whatsapp.com/F6lGAeSF3TcL27H8zaBcjf" target="_blank">
+      <button class="whatsapp-btn">UNIRSE A WHATSAPP</button>
+    </a>
   </div>
 
+  <div class="scroll-indicator">⬇️</div> <!-- Indicador de desplazamiento -->
+
   <div class="box">
-    <h2>🔐 Datos para iniciar sesión</h2>
+    <h2>Datos para iniciar sesión</h2>
     <p><strong>Usuario:</strong> <span class="highlight">SurvivalCR1234</span></p>
     <p><strong>Contraseña:</strong> <span class="highlight">Encender</span></p>
     <p>Usa estos datos en <a href="https://aternos.org" target="_blank">https://aternos.org</a></p>
   </div>
 
   <div class="box">
-    <h2>🧭 Tutorial paso a paso</h2>
-    <p>1️⃣ Inicia sesión con los datos anteriores.</p>
+    <h2>Tutorial paso a paso</h2>
+    <p>1. Inicia sesión con los datos anteriores.</p>
     <img src="paso1.png" alt="Paso 1: Iniciar sesión">
 
-    <p>2️⃣ Haz clic en “Iniciar” para encender el servidor.</p>
+    <p>2. Haz clic en “Iniciar” para encender el servidor.</p>
     <img src="paso2.png" alt="Paso 2: Iniciar servidor">
 
-    <p>3️⃣ Espera unos minutos hasta que el servidor esté en línea.</p>
+    <p>3. Espera unos minutos hasta que el servidor esté en línea.</p>
     <img src="paso3.png" alt="Paso 3: Esperando encendido">
 
-    <p>4️⃣ Entra al servidor desde Minecraft con el IP correspondiente.</p>
+    <p>4. Entra al servidor desde Minecraft con el IP correspondiente.</p>
     <img src="paso4.png" alt="Paso 4: Entrar al servidor">
   </div>
+
+  <footer>
+    <p>&copy; 2025 SurvivalCR. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Función para detectar el desplazamiento y mostrar las cajas
+    const boxes = document.querySelectorAll('.box');
+
+    const showBoxes = () => {
+      const triggerBottom = window.innerHeight / 5 * 4; // Punto de activación
+
+      boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top;
+
+        if (boxTop < triggerBottom) {
+          box.classList.add('visible'); // Añadir clase visible
+        } else {
+          box.classList.remove('visible'); // Remover clase visible
+        }
+      });
+    }
+
+    window.addEventListener('scroll', showBoxes);
+    showBoxes(); // Llamar a la función al cargar la página
+  </script>
 
 </body>
 </html>
